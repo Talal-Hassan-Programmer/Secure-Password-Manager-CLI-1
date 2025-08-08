@@ -12,8 +12,24 @@ if x == "yes": # asking for key generation
     gen_key() 
 
 
-def load_key():
+def load_key(): #loading Key from key.key
     with open("key.key", "rb") as f:
         return f.read()
     
-print(load_key()) #Checking if the key is loaded
+
+
+def add_pass():
+    name = input("enter account name:")
+    password = input("enter you password:")
+
+    k = load_key()
+
+    fernet = Fernet(k)
+
+    encrypted = fernet.encrypt(password.encode())
+
+    with open("password.txt", "a") as p:
+        p.write(f"{name} : {encrypted.decode()} \n")
+
+
+add_pass()
