@@ -18,7 +18,7 @@ def load_key(): #loading Key from key.key
     
 
 
-def add_pass():
+def add_pass(): # adding new passwords
     name = input("enter account name:")
     password = input("enter you password:")
 
@@ -32,4 +32,15 @@ def add_pass():
         p.write(f"{name} : {encrypted.decode()} \n")
 
 
-add_pass()
+def get_pass(): # getting all passwords
+    k = load_key()
+    fernet = Fernet(k)
+
+    with open("password.txt", "r") as f:
+        for i in f:
+            name , encrypted = i.strip().split(" : ")
+            decrypted = fernet.decrypt(encrypted.encode())
+            print(f"{name} : {decrypted.decode()}")
+
+add_pass() # Checking if code works
+get_pass()
