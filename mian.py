@@ -7,10 +7,6 @@ def gen_key(): # Func for genrating Key
     with open("key.key","wb") as f:
         f.write(key)
 
-x = input("what to genrate a new key (yes/no) : ").lower()
-if x == "yes": # asking for key generation
-    gen_key() 
-
 
 def load_key(): #loading Key from key.key
     with open("key.key", "rb") as f:
@@ -42,5 +38,29 @@ def get_pass(): # getting all passwords
             decrypted = fernet.decrypt(encrypted.encode())
             print(f"{name} : {decrypted.decode()}")
 
-add_pass() # Checking if code works
-get_pass()
+def main():
+    while True:
+        ch = ["-add","-view","-generate a new key (for first time do it)","-exit"]
+
+        print("what whould you like to do")
+        for i in ch:
+            print(i)
+
+        user = input().lower()
+        if user == "add":
+            add_pass()
+        elif user == "view":
+            get_pass()
+        elif user == "generate a new key":
+            confirm = input("⚠️ This will delete the old key and make all stored passwords unreadable. Are you sure? (yes/no): ").strip().lower()
+            if confirm == "yes":
+                gen_key()
+                print("✅ New key generated.")
+            gen_key()
+        elif user == "exit":
+            break
+        else:
+            print("Enter a valid choice.")
+
+
+main()
