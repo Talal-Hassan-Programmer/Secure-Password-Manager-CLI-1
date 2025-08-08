@@ -35,17 +35,18 @@ Secure-Password-Manager-CLI-1/
 Install it with:
 ```bash
 pip install cryptography
+```
+
 
 python main.py
 You'll see a menu like this:
-
+```bash
 What would you like to do?
 add
 view
 generate a new key
 exit
-
-
+```
 Choose an option to add/view passwords, or generate a new encryption key.
 
 ⚠️ WARNING
