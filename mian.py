@@ -56,7 +56,7 @@ def main():
             if confirm == "yes":
                 gen_key()
                 print("✅ New key generated.")
-            gen_key()
+            
         elif user == "exit":
             break
         else:
