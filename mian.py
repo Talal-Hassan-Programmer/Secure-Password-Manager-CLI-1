@@ -58,10 +58,12 @@ def del_pass(): # password deleting func
         print(i+1,ll[i])
     pp = int(input("enter the number: "))
     
-    if pp <=0:
-        pp = int(input("Please enter the a valid number: "))
-    else:
-        ll.pop(pp-1)
+    while True:
+        if pp > 0 and pp <= len(ll):
+            ll.pop(pp-1)
+            break
+        else:
+            pp = int(input("please enter a valid number: "))
     
     with open("password.txt", "w") as p:
         for i in ll:
