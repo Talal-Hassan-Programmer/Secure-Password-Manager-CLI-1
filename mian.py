@@ -51,7 +51,7 @@ def del_pass(): # password deleting func
     ll = []
     with open("password.txt", "r") as f:
         for i in f:
-            name , encrypted = i.strip().split(" : ")
+            name , encrypted = i.strip().split(' : ', 1)
             decrypted = fernet.decrypt(encrypted.encode())
             ll.append(f"{name} : {decrypted.decode()}")
     for i in range(len(ll)):
