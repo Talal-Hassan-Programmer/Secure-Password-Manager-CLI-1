@@ -97,7 +97,7 @@ Generating a new key will make **all existing stored passwords permanently unrea
 
 ## ✍️ Author
 
-**Talal Hassan** — Student & Aspiring Software/Cybersecurity Engineer 🇶🇦
+**Talal Hassan** — Competitive Programmer · IOI Qatar 2026 National Champion · Cybersecurity Enthusiast 🇶🇦
 
 [GitHub — Talal-Hassan-Programmer](https://github.com/Talal-Hassan-Programmer)
 
