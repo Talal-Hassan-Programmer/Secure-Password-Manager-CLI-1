@@ -44,8 +44,8 @@ def get_pass(): # getting all passwords
             decrypted = fernet.decrypt(encrypted.encode())
             print(f"{name} : {decrypted.decode()}")
 
-            
-def del_pass():
+
+def del_pass(): # password deleting func
     k = load_key()
     fernet = Fernet(k)
     ll = []
