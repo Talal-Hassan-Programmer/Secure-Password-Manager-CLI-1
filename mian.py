@@ -73,7 +73,7 @@ def del_pass():
     pass
 def main():
     while True:
-        ch = ["-add","-delete","-view","-generate a new key (for first time do it)","-exit"]
+        ch = ["add","delete","view","generate a new key (for first time do it)","exit"]
 
         print("what whould you like to do")
         for i in ch:
