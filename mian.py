@@ -34,7 +34,7 @@ def get_pass(): # getting all passwords
 
     with open("password.txt", "r") as f:
         for i in f:
-            name , encrypted = i.strip().split(" : ")
+            name , encrypted = i.strip().split(' : ', 1)
             decrypted = fernet.decrypt(encrypted.encode())
             print(f"{name} : {decrypted.decode()}")
 def del_pass():
@@ -59,7 +59,7 @@ def del_pass():
     
     with open("password.txt", "w") as p:
         for i in ll:
-            name, password = i.strip().split(" : ")
+            name, password = i.strip().split(' : ', 1)
 
             k = load_key()
 
