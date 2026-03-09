@@ -7,6 +7,12 @@ def gen_key(): # Func for genrating Key
     with open("key.key","wb") as f:
         f.write(key)
 
+try: # genrating a key 9in starting if there is no key.
+    with open("key.key", "r") as p:
+        pass
+except:
+    gen_key()
+
 
 def load_key(): #loading Key from key.key
     with open("key.key", "rb") as f:
@@ -37,6 +43,8 @@ def get_pass(): # getting all passwords
             name , encrypted = i.strip().split(' : ', 1)
             decrypted = fernet.decrypt(encrypted.encode())
             print(f"{name} : {decrypted.decode()}")
+
+            
 def del_pass():
     k = load_key()
     fernet = Fernet(k)
@@ -73,7 +81,7 @@ def del_pass():
     pass
 def main():
     while True:
-        ch = ["add","delete","view","generate a new key (for first time do it)","exit"]
+        ch = ["add","delete","view","generate a new key","exit"]
 
         print("what whould you like to do")
         for i in ch:
