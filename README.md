@@ -1,75 +1,108 @@
 # 🔐 Secure Password Manager CLI
 
-A simple, beginner-friendly command-line password manager built with Python and the `cryptography` library. It allows you to securely store and retrieve encrypted passwords for different accounts using symmetric encryption (Fernet).
+A beginner-friendly command-line password manager built with Python. Stores and retrieves passwords using symmetric encryption via the `cryptography` library (Fernet).
+
+> Built as part of a personal Python + cybersecurity learning roadmap.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- ✅ Secure password encryption using `cryptography.fernet`
-- ✅ Add and store account-password pairs safely
-- ✅ View and decrypt saved passwords
-- ✅ Generate a new encryption key when needed (⚠️ resets all stored data)
-- ✅ Simple CLI-based menu system
+| Feature | Status |
+|---|---|
+| AES-based encryption via Fernet | ✅ |
+| Add account/password pairs | ✅ |
+| View & decrypt saved passwords | ✅ |
+| Delete a specific password entry | ✅ |
+| Auto-generate key on first run | ✅ |
+| Re-generate encryption key (with confirmation) | ✅ |
+| Input validation & error handling | ✅ |
 
 ---
 
 ## 📁 Project Structure
+
+```
 Secure-Password-Manager-CLI-1/
 │
-├── main.py # Main program logic
-├── key.key # Generated encryption key (ignored by Git) --Auto genrate via Func 
-├── password.txt # Encrypted password storage -- Auto genrate 
-├── .gitignore # Prevents sensitive files from being committed
-└── README.md # This file
-
+├── main.py          # All program logic
+├── key.key          # Auto-generated encryption key (git-ignored)
+├── password.txt     # Encrypted password storage (auto-created)
+├── .gitignore       # Excludes key.key and password.txt
+└── README.md        # This file
+```
 
 ---
 
-## ⚙️ How to Use
+## ⚙️ Setup & Usage
 
-### 🔧 Requirements:
+### Requirements
 - Python 3.7+
-- `cryptography` module
+- `cryptography` library
 
-Install it with:
 ```bash
 pip install cryptography
 ```
 
+### Run
 
-python main.py
-You'll see a menu like this:
 ```bash
-What would you like to do?
+python main.py
+```
+
+### Menu
+
+```
+what would you like to do
 add
+delete
 view
 generate a new key
 exit
 ```
-Choose an option to add/view passwords, or generate a new encryption key.
 
-⚠️ WARNING
-If you generate a new key, all previously stored passwords become unreadable.
-Only do this when starting fresh.
+- **add** — enter an account name and password to encrypt and store it
+- **delete** — lists all entries by number; enter the number to remove
+- **view** — decrypts and displays all stored passwords
+- **generate a new key** — creates a new key (requires confirmation; see warning below)
+- **exit** — close the program
 
-🧠 How It Works
-Passwords are encrypted with a key stored in key.key.
+---
 
-Encrypted passwords are saved in password.txt with the format:
-    account_name : encrypted_password
-When viewing, the encrypted password is decrypted back to plaintext using the same key.
+## 🧠 How It Works
 
-🛡️ Security Notes
-Keep key.key private — anyone with it can decrypt your passwords.
+1. On first run, a Fernet encryption key is auto-generated and saved to `key.key`
+2. When you add a password, it is encrypted and written to `password.txt` in the format:
+   ```
+   account_name : <encrypted_token>
+   ```
+3. When you view passwords, each token is decrypted using the same key
+4. Delete re-encrypts the remaining entries and rewrites the file
 
-.gitignore is set to exclude key.key from being uploaded to GitHub. *- key.key is genrated in the folder not in .gitignore
+---
 
-✍️ Author
-Talal Hassan
-Student & Aspiring Cybersecurity Engineer 🇶🇦
-🔗 [GitHub Profile](https://github.com/Talal-Hassan-Programmer)
+## ⚠️ Warning
 
-📌 License
-This project is licensed under the MIT License — feel free to modify and use it for personal learning.
+Generating a new key will make **all existing stored passwords permanently unreadable**. Only do this when starting fresh. A confirmation prompt is required before the key is replaced.
 
+---
+
+## 🛡️ Security Notes
+
+- `key.key` is excluded from Git via `.gitignore` — never commit it
+- Anyone with access to `key.key` can decrypt your passwords
+- This project is intended for **learning purposes** — not production use
+
+---
+
+## ✍️ Author
+
+**Talal Hassan** — Student & Aspiring Software/Cybersecurity Engineer 🇶🇦
+
+[GitHub — Talal-Hassan-Programmer](https://github.com/Talal-Hassan-Programmer)
+
+---
+
+## 📌 License
+
+Licensed under the [MIT License](https://opensource.org/licenses/MIT) — free to use and modify for personal learning.
