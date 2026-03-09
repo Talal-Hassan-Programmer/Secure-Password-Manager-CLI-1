@@ -37,12 +37,17 @@ def add_pass(): # adding new passwords
 def get_pass(): # getting all passwords
     k = load_key()
     fernet = Fernet(k)
+    try:
 
-    with open("password.txt", "r") as f:
-        for i in f:
-            name , encrypted = i.strip().split(' : ', 1)
-            decrypted = fernet.decrypt(encrypted.encode())
-            print(f"{name} : {decrypted.decode()}")
+        with open("password.txt", "r") as f:
+            for i in f:
+                name , encrypted = i.strip().split(' : ', 1)
+                decrypted = fernet.decrypt(encrypted.encode())
+                print(f"{name} : {decrypted.decode()}")
+    except:
+        print("No passwords")
+        
+
 
 
 def del_pass(): # password deleting func
