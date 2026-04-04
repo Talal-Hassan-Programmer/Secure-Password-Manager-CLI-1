@@ -85,9 +85,32 @@ def del_pass(): # password deleting func
     
     except FileNotFoundError:
         print("No passwords yet.")
+
+
+
+
+def search_pass():
+    k = load_key()
+    fernet = Fernet(k)
+    search_name = input("pls enter the username:  ").lower()
+    try:
+
+        with open("password.txt", "r") as f:
+            for i in f:
+                name , encrypted = i.strip().split(' : ', 1)
+                decrypted = fernet.decrypt(encrypted.encode())
+                if (search_name) == (name.lower()) :
+                    print(f"{name} : {decrypted.decode()}")
+                
+    except FileNotFoundError:
+        print("No passwords yet.")
+
+
+
+
 def main():
     while True:
-        ch = ["add","delete","view","generate a new key","exit"]
+        ch = ["add","delete","view","search","generate a new key","exit"]
 
         print("what whould you like to do")
         for i in ch:
@@ -100,6 +123,8 @@ def main():
             del_pass()
         elif user == "view":
             get_pass()
+        elif user == "search":
+            search_pass()
         elif user == "generate a new key":
             confirm = input("⚠️ This will delete the old key and make all stored passwords unreadable. Are you sure? (yes/no): ").strip().lower()
             if confirm == "yes":

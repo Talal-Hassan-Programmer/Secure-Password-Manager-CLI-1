@@ -14,6 +14,7 @@ A beginner-friendly command-line password manager built with Python. Stores and 
 | Add account/password pairs | ✅ |
 | View & decrypt saved passwords | ✅ |
 | Delete a specific password entry | ✅ |
+| Search password by account name | ✅ |
 | Auto-generate key on first run | ✅ |
 | Re-generate encryption key (with confirmation) | ✅ |
 | Input validation & error handling | ✅ |
@@ -57,6 +58,7 @@ what would you like to do
 add
 delete
 view
+search
 generate a new key
 exit
 ```
@@ -64,6 +66,7 @@ exit
 - **add** — enter an account name and password to encrypt and store it
 - **delete** — lists all entries by number; enter the number to remove
 - **view** — decrypts and displays all stored passwords
+- **search** — look up a password by account name (case-insensitive)
 - **generate a new key** — creates a new key (requires confirmation; see warning below)
 - **exit** — close the program
 
@@ -77,7 +80,8 @@ exit
    account_name : <encrypted_token>
    ```
 3. When you view passwords, each token is decrypted using the same key
-4. Delete re-encrypts the remaining entries and rewrites the file
+4. Search looks up an entry by account name (case-insensitive) and prints its decrypted password
+5. Delete re-encrypts the remaining entries and rewrites the file
 
 ---
 
